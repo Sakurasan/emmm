@@ -20,8 +20,8 @@ func InitDb() {
 	defer DB.Close()
 
 	// Migrate the schema
-	DB.AutoMigrate(&models.Info{})
-	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.Info{}, &models.User{})
+	// DB.AutoMigrate(&models.User{})
 }
 
 //   // 创建

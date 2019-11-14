@@ -6,8 +6,12 @@ import (
 
 type User struct {
 	gorm.Model
-	Num        int    `gorm:"AUTO_INCREMENT"`
-	UserId     string `gorm:"unique;not null"`
+	// Num int `gorm:"AUTO_INCREMENT"`
+	UserId     string //`gorm:"unique;not null"`
 	Name       string //姓名
-	Department string `gorm:"index:department"` //部门
+	Department string //`gorm:"index:department"` //部门
+}
+
+func (t User) TableName() string {
+	return "user"
 }

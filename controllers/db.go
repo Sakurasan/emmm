@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"emmm/models"
+	"fmt"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -15,13 +16,15 @@ func InitDb() {
 	var err error
 	DB, err = gorm.Open("sqlite3", "emmm.db")
 	if err != nil {
+		fmt.Println(err)
 		panic("failed to connect database")
 	}
-	defer DB.Close()
+	//defer DB.Close()
 
 	// Migrate the schema
 	DB.AutoMigrate(&models.Info{}, &models.User{})
 	// DB.AutoMigrate(&models.User{})
+	fmt.Println("DB初始化成功")
 }
 
 //   // 创建

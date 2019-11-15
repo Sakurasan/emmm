@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"emmm/models"
+	"fmt"
 	"github.com/astaxie/beego"
+	"time"
 )
 
 type QueryController struct {
@@ -9,7 +12,17 @@ type QueryController struct {
 }
 
 func (t *QueryController) Get() {
-	t.Data["Website"] = "beego.me"
-	t.Data["Email"] = "astaxie@gmail.com"
 	t.TplName = "teml.html"
+	all := []models.Info{}
+
+	DB.Where("scan_time LIKE ?", fmt.Sprintf(`%s`, time.Now().Format("200601")+`%`)).Order("department desc").Find(&all)
+	//DB.Find(&all)
+	t.Data["Data"] = all
+	return
+}
+
+func (t QueryController) Post() {
+	fmt.Println(t.Input().Get("name"))
+	t.Ctx.WriteString("OK")
+
 }

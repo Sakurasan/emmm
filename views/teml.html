@@ -42,7 +42,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="hidden-xs logo" href="/">
-                    <img style="height:45px;width:55px;" src="/static/img/logo.png">
+                    []~(￣▽￣)~*
+                    <!--img style="height:45px;width:55px;" src="//beego.me/static/img/beego_purple.png"-->
                 </a>
                     <!-- <a class="navbar-brand" href="">FmtExcel</a>  -->
                 </div>
@@ -75,7 +76,7 @@
         </div>
 
         <div class="col-md-10">
-            <h2>查询 3</h2>
+            <h2>查询</h2>
             <hr>
 
             <!-- <strong> 读取数据：</strong> -->
@@ -101,16 +102,17 @@
                     <thead>
                         <tr>
                             <th>\</th>
-                            <th>交易时间</th>
-                            <th>交易类型</th>
-                            <th>交易键值</th>
-                            <th>微信订单号</th>
-                            <th>原商户号</th>
-                            <th>目的商户号</th>
-                            <th>订单号</th>
-                            <th>备用字段6</th>
-                            <th>商户号</th>
-                            <th>支付方式</th>
+                            <th>部门</th>
+                            <th>姓名</th>
+                            <th>型号</th>
+                            <th>系统</th>
+                            <th>mac地址</th>
+                            <th>杀软</th>
+                            <th>扫描时间</th>
+                            <th>扫描结果</th>
+                            <th>病毒数</th>
+                            <th>异常数</th>
+                            <th>处理方式</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,17 +120,17 @@
                         {{range $n,$i := .Data}}
                         <tr>
                             <th scope="row">{{$n}}</th>
-                            <th>{{$i.A}}</th>
-                            <th>{{$i.B}}</th>
-                            <th>{{$i.C}}</th>
-                            <th>{{$i.D}}</th>
-                            <th>{{$i.E}}</th>
-                            <th>{{$i.F}}</th>
-                            <th>{{$i.G}}</th>
-                            <th>{{$i.H}}</th>
-                            <th>{{$i.I}}</th>
-                            <th>{{$i.J}}</th>
-                            
+                            <th>{{$i.Department}}</th>
+                            <th>{{$i.Name}}</th>
+                            <th>{{$i.ComputerType}}</th>
+                            <th>{{$i.OsType}}</th>
+                            <th>{{$i.MacAddr}}</th>
+                            <th>{{$i.SecuritySoftWare}}</th>
+                            <th>{{$i.ScanTime}}</th>
+                            <th>{{$i.ScanResult}}</th>
+                            <th>{{$i.VirusNum}}</th>
+                            <th>{{$i.AbnormalNum}}</th>
+                            <th>{{$i.HowDealWith}}</th>
                         </tr>
                         {{end}}
                     </tbody>

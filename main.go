@@ -1,13 +1,12 @@
 package main
 
 import (
+	"emmm/controllers"
 	_ "emmm/routers"
 	"github.com/astaxie/beego"
-	"emmm/controllers"
 )
 
 func main() {
 	controllers.InitDb()
 	beego.Run()
 }
-

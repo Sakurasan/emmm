@@ -54,7 +54,7 @@
     <div class="col-md-5" style="padding-bottom: 30px">
         <h2>Sign Up</h2>
         <hr>
-
+        {{if .GET}}
         <form id="uploadForm" action="/signup" method="POST">
             <form>
                 <div class="form-group">
@@ -90,7 +90,13 @@
                 <br>
                 <!-- <button type="submit" class="btn btn-primary">提交</button> -->
                 <input type="submit" id="btn1" class="btn btn-primary" value="UP" onclick="showFiles();showTB()"><br>
-            </form>
+        </form>
+        {{end}}
+        {{if .POST}}
+        <div class="col-md-4">
+            <div class="alert alert-success" role="alert"> OK </div>
+        </div>
+        {{end}}
     </div>
     </br>
         <script type="text/javascript">

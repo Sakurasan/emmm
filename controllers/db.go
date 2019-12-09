@@ -3,8 +3,10 @@ package controllers
 import (
 	"emmm/models"
 	"fmt"
+	"log"
 
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
@@ -25,6 +27,26 @@ func InitDb() {
 	DB.AutoMigrate(&models.Info{}, &models.User{})
 	// DB.AutoMigrate(&models.User{})
 	fmt.Println("DB初始化成功")
+}
+
+func InitMysqlDb(conf map[string]string) {
+	dbType := "mysql"
+	dbName := conf["name"]
+	user := conf["user"]
+	password := conf["password"]
+	host := conf["host"]
+
+	// db, err := gorm.Open("mysql", "user:password@/dbname?charset=utf8&parseTime=True&loc=Local")
+	DB, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName))
+	if err != nil {
+		log.Fatalf("connect %s has err:%s", dbType, err)
+	}
+	DB.AutoMigrate(&models.Info{}, &models.User{})
+
+	DB.DB().SetMaxIdleConns(10)
+	DB.DB().SetMaxOpenConns(50)
+
+	fmt.Println("数据库初始化完毕", dbType)
 }
 
 //   // 创建

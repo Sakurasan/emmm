@@ -1,3 +1,5 @@
-*.exe
+*.exe*
+/static
 *.db
 emmm
+.idea

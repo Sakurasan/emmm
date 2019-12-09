@@ -32,24 +32,16 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="hidden-xs logo" href="/" style="padding-top: 20px">
-                        []~(￣▽￣)~*
+                        (゜-゜)つロ
                     <!--img style="height:45px;width:55px;" src="/static/img/logo.png"-->
                 </a>
-                    <!-- <a class="navbar-brand" href="">FmtExcel</a>  -->
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <!-- <ul class="nav navbar-nav">
-                        <li><a href="/" target="_blank">HOME</a></li>
-                        <li><a href="/query" target="_blank">查询</a></li>
-                    </ul> -->
                     {{template "header" .}}
 
                 </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container-fluid -->
         </nav>
     </header>
 
@@ -67,48 +59,53 @@
                     <form>
                         <div class="form-group">
                           <label for="exampleInputEmail1"></label>
+                          <!--div-- class="form-group">
+                              <label>&nbsp;</label>
+                              <select class="form-control" id = "Department" name="Department" required>
+                                  <option></option>
+                                  <option>基础支付</option>
+                                  <option>银行服务</option>
+                                  <option>技术支持</option>
+                                  <option>综合部</option>
+                              </select>
+                              <!--input type="text" class="form-control" id="Department" name="Department" placeholder="部门" aria-required="true" required=""-->
+                          </div-->
                           <div class="form-group">
-                              <input type="text" class="form-control" id="Department" name="Department" placeholder="部门">
+                              <input type="text" class="form-control" id="name" name="Name" placeholder="姓名" required >
+                          </div>
+                          <!--<div class="form-group">
+                              <input type="text" class="form-control" id="ComputerType" name="ComputerType" placeholder="型号"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="name" name="Name" placeholder="姓名">
+                              <input type="text" class="form-control" id="OsType" name="OsType" placeholder="系统"required >
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="ComputerType" name="ComputerType" placeholder="型号">
+                              <input type="text" class="form-control" id="MacAddr" name="MacAddr" placeholder="MAC地址"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="OsType" name="OsType" placeholder="系统">
-                          </div>
-                          <div class="form-group">
-                              <input type="text" class="form-control" id="MacAddr" name="MacAddr" placeholder="MAC地址">
-                          </div>
-                          <div class="form-group">
-                              <input type="text" class="form-control" id="SecuritySoftWare" name="SecuritySoftWare" placeholder="杀软">
-                          </div>
+                              <input type="text" class="form-control" id="SecuritySoftWare" name="SecuritySoftWare" placeholder="杀软"required>
+                          </div>-->
                           <!--div class="form-group">
                               <input type="text" class="form-control" id="ScanTime" name="ScanTime" placeholder="扫描时间">
                           </div-->
                           <div class="form-group">
-                              <input type="text" class="form-control" id="ScanResult" name="ScanResult" placeholder="扫描结果">
+                              <input type="text" class="form-control" id="ScanResult" name="ScanResult" placeholder="扫描结果"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="VirusNum" name="VirusNum" placeholder="病毒数">
+                              <input type="text" class="form-control" id="VirusNum" name="VirusNum" placeholder="病毒数"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="AbnormalNum" name="AbnormalNum" placeholder="异常数">
+                              <input type="text" class="form-control" id="AbnormalNum" name="AbnormalNum" placeholder="异常数"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="HowDealWith" name="HowDealWith" placeholder="处理方式">
+                              <input type="text" class="form-control" id="HowDealWith" name="HowDealWith" placeholder="处理方式"required>
                           </div>
-                          <div class="form-group">
+                          <!--div-- class="form-group">
                               <input type="text" class="form-control" id="DealName" name="DealName" placeholder="处理人">
-                          </div>
+                          </div-->
                           <!--input type="email" class="form-control" id="Adviser" placeholder="备注"-->
                         </div>
                 <br>
-                <!-- 输入日期：&nbsp&nbsp&nbsp -->
-                <!-- <input type="text" class="form-control" name="mer_date" id="mer_date" placeholder="日期格式:YYYYMMDD" aria-required="true" required=""><br><br> -->
-                <!-- 输入商户号：<input type="text" class="form-control" name="merid" id="merid" placeholder="商户号" aria-required="true" required=""><br><br> -->
                 <!-- <button type="submit" class="btn btn-primary">提交</button> -->
                 <input type="submit" id="btn1" class="btn btn-primary" value="提交" onclick="showFiles();showTB()"><br>
             </form>
@@ -116,7 +113,7 @@
         {{end}}
         </br>
         <div class="col-sm-1">
-            {{if .POST}}
+            {{if .Have}}
         </div>
         <div class="col-md-12" style="padding-left: 9%" >
             <br>
@@ -129,8 +126,8 @@
                             <th>\</th>
                             <th>部门</th>
                             <th>姓名</th>
-                            <th>型号</th>
-                            <th>系统</th>
+                            <!--<th>型号</th>
+                            <th>系统</th>-->
                             <th>mac地址</th>
                             <th>杀软</th>
                             <th>扫描时间</th>
@@ -142,29 +139,27 @@
                     </thead>
                 </table>
             </div>
-            
+            {{end}}
+
+            {{if .POST}}
             <hr>
                 <div class="col-md-4">
                     <div class="alert alert-success" role="alert">{{.Status}}</div>
                 </div>
-                {{end}}
-            <!-- <script type="text/javascript">
-                function showTB() {
+            {{end}}
+            <script type="text/javascript">
+                <function showTB() {
                     var tbplay = document.getElementById("tbplay");
                     tbplay.style.display = "block"
                 }
 
                 $("#btn1").click(function () {
-                    if (document.getElementById("cate").value == "") {
-                        alert("！请选择'商户号'。");
+                    if (document.getElementById("Department").value == "") {
+                        alert("不能为空");
                     }
-                    else if (document.getElementById("order_id").value == "") {
-                        alert("！请输入'订单号'。");
-                    }
-
                 });
 
-            </script> -->
+            </script>
 
         </div>
 

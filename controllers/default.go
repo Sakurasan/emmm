@@ -14,6 +14,16 @@ type MainController struct {
 
 func (c *MainController) Get() {
 	c.TplName = "index.html"
+	uid, err := getLocalAccount(c.Ctx)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		user := models.User{}
+		DB.Where("user_id = ?", uid).Find(&user)
+		fmt.Println("user:", uid, user.Name)
+		c.Data["Name"] = user.Name
+	}
+
 	c.Data["GET"] = true
 }
 

@@ -21,7 +21,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <title>查询</title>
+    <title>本月记录</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-5" style="padding-bottom: 30px">
-            <h2>输入</h2>
+            <h2>本月记录</h2>
             <hr>
             {{if .GET}}
             <form id="uploadForm" action="/" method="POST">
@@ -99,13 +99,13 @@
                               <input type="text" class="form-control" id="ScanResult" name="ScanResult" placeholder="扫描结果"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="VirusNum" name="VirusNum" placeholder="病毒数"required>
+                              <input type="text" class="form-control" id="VirusNum" name="VirusNum" placeholder="病毒个数"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="AbnormalNum" name="AbnormalNum" placeholder="异常数"required>
+                              <input type="text" class="form-control" id="AbnormalNum" name="AbnormalNum" placeholder="异常个数"required>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" id="HowDealWith" name="HowDealWith" placeholder="处理方式"required>
+                              <input type="text" class="form-control" id="HowDealWith" name="HowDealWith" placeholder="处理方式">
                           </div>
                           <!--div-- class="form-group">
                               <input type="text" class="form-control" id="DealName" name="DealName" placeholder="处理人">

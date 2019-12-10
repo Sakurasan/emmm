@@ -22,7 +22,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <title>查询</title>
+    <title>SignUp</title>
 </head>
 
 <body>
@@ -60,9 +60,10 @@
     </div>
 
     <div class="col-md-5" style="padding-bottom: 30px">
-        <h2>Sign Up</h2>
+        <h2>录入</h2>
         <hr>
         {{if .GET}}
+        <label>请先录入</label>
         <form id="uploadForm" action="/signup" method="POST">
             <form>
                 <div class="form-group">
@@ -82,10 +83,10 @@
                         <input type="text" class="form-control" id="Name" name="Name" placeholder="姓名" required >
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="ComputerType" name="ComputerType" placeholder="型号">
+                        <input type="text" class="form-control" id="ComputerType" name="ComputerType" placeholder="型号" value="WinPC">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="OsType" name="OsType" placeholder="系统" >
+                        <input type="text" class="form-control" id="OsType" name="OsType" placeholder="系统"value="Windows">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="MacAddr" name="MacAddr" placeholder="MAC地址"required>

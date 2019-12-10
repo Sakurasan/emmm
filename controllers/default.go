@@ -4,8 +4,10 @@ import (
 	"fmt"
 
 	"emmm/models"
-	"github.com/astaxie/beego"
 	"time"
+
+	"github.com/astaxie/beego"
+	"github.com/jinzhu/gorm"
 )
 
 type MainController struct {
@@ -17,7 +19,7 @@ func (c *MainController) Get() {
 	uid, err := getLocalAccount(c.Ctx)
 	if err != nil {
 		fmt.Println(err)
-	} else {
+	} else if uid != "" && len(uid) > 9 {
 		user := models.User{}
 		DB.Where("user_id = ?", uid).Find(&user)
 		fmt.Println("user:", uid, user.Name)
@@ -46,8 +48,26 @@ func (t *MainController) Post() {
 	newinfo.AbnormalNum = t.GetString("AbnormalNum")
 	newinfo.HowDealWith = t.GetString("HowDealWith")
 	newinfo.DealName = t.GetString("DealName")
+	user := models.User{}
+	err := DB.Where("name = ?", newinfo.Name).First(&user).Error
+	if err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			fmt.Println("未找到")
+		} else {
+			fmt.Println("其他错:", err)
+		}
+		t.Redirect("/signup", 302)
+		return
+	}
 
-	DB.Create(&newinfo)
-	t.Data["POST"] = true
-	t.Data["Status"] = "OK"
+	if user.Name != "" && len(user.Name) > 2 {
+		DB.Create(&newinfo)
+		t.Ctx.SetCookie("uid", fmt.Sprintf("%s", user.UserId), 3600*24*300, "/")
+		t.Data["POST"] = true
+		t.Data["Status"] = "完毕"
+		return
+	} else {
+		t.Redirect("/signup", 302)
+	}
+
 }

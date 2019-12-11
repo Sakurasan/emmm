@@ -61,13 +61,27 @@ func (t *MainController) Post() {
 	}
 
 	if user.Name != "" && len(user.Name) > 2 {
-		DB.Create(&newinfo)
-		t.Ctx.SetCookie("uid", fmt.Sprintf("%s", user.UserId), 3600*24*300, "/")
-		t.Data["POST"] = true
-		t.Data["Status"] = "完毕"
-		return
-	} else {
-		t.Redirect("/signup", 302)
+		findinfo := models.Info{}
+		err := DB.Where("name = ? AND scan_time = ?", user.Name, time.Now().Format("20060102")).First(&findinfo).Error
+		if err != nil {
+			fmt.Println(err)
+			if gorm.IsRecordNotFoundError(err) {
+				fmt.Println("本月未找到，允许记录")
+				DB.Create(&newinfo)
+				t.Ctx.SetCookie("uid", fmt.Sprintf("%s", user.UserId), 3600*24*300, "/")
+				t.Data["POST"] = true
+				t.Data["Status"] = "完毕"
+				return
+			} else {
+				t.Data["POST"] = true
+				t.Data["Status"] = "请重试" + err.Error()
+			}
+		}
+		if findinfo.Name != "" && len(findinfo.Name) >= 2 {
+			t.Data["POST"] = true
+			t.Data["Status"] = "本月重复提交"
+		}
+
 	}
 
 }

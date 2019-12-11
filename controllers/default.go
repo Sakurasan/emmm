@@ -67,6 +67,11 @@ func (t *MainController) Post() {
 			fmt.Println(err)
 			if gorm.IsRecordNotFoundError(err) {
 				fmt.Println("本月未找到，允许记录")
+				newinfo.Department = user.Department
+				newinfo.ComputerType = user.ComputerType
+				newinfo.OsType = user.OsType
+				newinfo.MacAddr = user.MacAddr
+				newinfo.SecuritySoftWare = user.SecuritySoftWare
 				DB.Create(&newinfo)
 				t.Ctx.SetCookie("uid", fmt.Sprintf("%s", user.UserId), 3600*24*300, "/")
 				t.Data["POST"] = true

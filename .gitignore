@@ -4,3 +4,5 @@
 emmm
 .idea
 emmm.tgz
+vendor/
+vendor*

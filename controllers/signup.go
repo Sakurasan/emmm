@@ -31,6 +31,9 @@ func (c *SignUpController) Post() {
 	user := models.User{}
 	user.Department = Department
 	user.Name = Name
+	if ComputerType == "" {
+		user.ComputerType = "WinPC"
+	}
 	user.ComputerType = ComputerType
 	user.OsType = OsType
 	user.MacAddr = MacAddr

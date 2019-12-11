@@ -33,8 +33,9 @@ func (c *SignUpController) Post() {
 	user.Name = Name
 	if ComputerType == "" {
 		user.ComputerType = "WinPC"
+	} else {
+		user.ComputerType = ComputerType
 	}
-	user.ComputerType = ComputerType
 	user.OsType = OsType
 	user.MacAddr = MacAddr
 	user.SecuritySoftWare = SecuritySoftWare

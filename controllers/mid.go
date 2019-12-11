@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego/context"
+	"strings"
 )
 
 func getLocalAccount(ctx *context.Context) (string, error) {
@@ -10,4 +11,8 @@ func getLocalAccount(ctx *context.Context) (string, error) {
 		return "", err
 	}
 	return name.Value, nil
+}
+
+func checkUserAgent(ctx *context.Context) bool {
+	return strings.Contains(ctx.Request.UserAgent(), "Wechat")
 }

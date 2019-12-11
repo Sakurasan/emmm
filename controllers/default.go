@@ -16,6 +16,10 @@ type MainController struct {
 
 func (c *MainController) Get() {
 	c.TplName = "index.html"
+	if checkUserAgent(c.Ctx) {
+		c.Data["Browser"] = true
+		return
+	}
 	uid, err := getLocalAccount(c.Ctx)
 	if err != nil {
 		fmt.Println(err)

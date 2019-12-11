@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -20,7 +21,7 @@ func (c *SignUpController) Get() {
 func (c *SignUpController) Post() {
 	c.TplName = "signup.html"
 	Department := c.GetString("Department")
-	Name := c.GetString("Name")
+	Name := strings.Trim(c.GetString("Name"), " ")
 	ComputerType := c.GetString("ComputerType")
 	OsType := c.GetString("OsType")
 	MacAddr := c.GetString("MacAddr")

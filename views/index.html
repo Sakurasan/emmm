@@ -59,6 +59,9 @@
         <div class="col-md-5" style="padding-bottom: 30px">
             <h2>本月记录</h2>
             <hr>
+            {{if .Browser}}
+            <div class="alert alert-success" role="alert">请在浏览器中打开</div>
+            {{end}}
             {{if .GET}}
             <form id="uploadForm" action="/" method="POST">
                     <form>
